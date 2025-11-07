@@ -5,19 +5,13 @@
     <title>Ray's Mom is Bomb!</title>
     <style>
         body {
-            background: #000;
-            font-family: 'Comic Sans MS', cursive;
+            background: url('IMG_3473.jpg') repeat;
+            background-size: 400px auto;
+            background-color: #222;
+            font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
             margin: 0;
             overflow-x: hidden;
-            animation: bgFlash 0.5s infinite;
-        }
-
-        @keyframes bgFlash {
-            0% { background: #000; }
-            25% { background: #1a0033; }
-            50% { background: #330000; }
-            75% { background: #003300; }
-            100% { background: #000; }
+            position: relative;
         }
 
         .container {
@@ -205,7 +199,7 @@
             margin: 30px auto;
             padding: 20px 40px;
             font-size: 24px;
-            font-family: 'Comic Sans MS', cursive;
+            font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
             font-weight: bold;
             background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
             color: white;
@@ -247,24 +241,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle,
-                rgba(255, 255, 0, 0.9) 0%,
-                rgba(255, 165, 0, 0.8) 20%,
-                rgba(255, 0, 0, 0.7) 40%,
-                rgba(0, 0, 0, 0.5) 70%,
-                rgba(0, 0, 0, 0) 100%);
+            background: rgba(0, 0, 0, 0.5);
             display: none;
             justify-content: center;
             align-items: center;
-            font-size: 120px;
             z-index: 9999;
-            animation: explosionFlash 0.5s;
         }
 
-        @keyframes explosionFlash {
-            0% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1.5); }
-            100% { opacity: 0; transform: scale(3); }
+        .explosion-overlay img {
+            max-width: 600px;
+            max-height: 600px;
+            width: auto;
+            height: auto;
+            animation: explosionScale 0.5s;
+        }
+
+        @keyframes explosionScale {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .question-text {
@@ -287,7 +282,7 @@
         .answer-button {
             padding: 15px 40px;
             font-size: 28px;
-            font-family: 'Comic Sans MS', cursive;
+            font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
             font-weight: bold;
             color: white;
             border: 5px solid;
@@ -314,7 +309,9 @@
     </style>
 </head>
 <body>
-    <div id="explosionOverlay" class="explosion-overlay">💣💥💣💥💣</div>
+    <div id="explosionOverlay" class="explosion-overlay">
+        <img src="explosion-12681.gif" alt="Explosion">
+    </div>
 
     <div class="fire"></div>
 
@@ -383,19 +380,118 @@
     <div class="fire"></div>
 
     <script>
-        function showRandomImage() {
-            // Array of image URLs from japanese_women.txt
-            const imageUrls = [
-                'https://media.sciencephoto.com/image/p7010619/800wm/P7010619.jpg',
-                'https://blue-vagabond.com/wp-content/uploads/2020/04/a-japanese-woman-near-sakura.png',
-                'https://japanintercultural.com/wpdata/wp-content/uploads/2011/12/iStock-1156112734-tiny-scaled.jpg',
-                'https://www.japanbuzz.info/wp-content/uploads/2021/05/Non_no.jpg',
-                'https://miro.medium.com/v2/resize:fit:1400/1*Fh-8HudVJ6KFO3gzupXjdw.jpeg'
-            ];
+        // Array of image URLs from japanese_women.txt
+        const imageUrls = [
+            'http://cdn.gaijinpot.com/app/uploads/sites/4/2025/05/iStock-mapo-How-to-Ask-Women-Out-in-Japan-date-cafe.jpeg',
+            'http://japan-clothing.com/cdn/shop/products/Kimono-Japonais-Femme-Qualite--Kasumi--Japanstreet-1645882780.jpg',
+            'http://kimurakami.com/cdn/shop/products/japanese-traditional-dress-kimono.jpg',
+            'http://maruhisa-usa.com/cdn/shop/collections/home_shopby_women_6fc05bb3-7d40-4e04-acdf-f063d531fbac.png',
+            'https://admin.expatica.com/jp/wp-content/uploads/sites/18/2023/11/women-rights-japan-1536x1024.jpg',
+            'https://asiapacificcurriculum.ca/sites/default/files/styles/full_width/public/2017-09/Japan%20Womenomics%20keystone.jpg',
+            'https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8xOTU4MzIwMS9vcmlnaW4uanBnIiwiZXhwaXJlc19hdCI6MTc2OTcxMTI1OX0.rDqxcHbmoGLGDx7t9cML9eAGsTrt1K2lM9M8BU6BPhw/img.jpg',
+            'https://blog.btrax.com/wp-content/uploads/2025/04/female-ent-panel-jp.jpg',
+            'https://blue-vagabond.com/wp-content/uploads/2020/04/a-japanese-woman-near-sakura.png',
+            'https://borgenproject.org/wp-content/uploads/guille-alvarez-6bVeZWa5VSE-unsplash.jpg',
+            'https://bradcatblog.wordpress.com/wp-content/uploads/2014/06/4014587178_2422319f92_o.jpg',
+            'https://c8.alamy.com/comp/2BWXAWF/japanese-woman-in-traditional-dress-with-parasol-ruriko-ji-pagoda-yamaguchi-japan-2BWXAWF.jpg',
+            'https://c8.alamy.com/comp/A0PT1E/beautiful-japanese-woman-wearing-traditional-kimono-poses-in-kyoto-A0PT1E.jpg',
+            'https://c8.alamy.com/comp/CECK8B/head-shot-of-japanese-woman-in-traditional-makeup-holding-red-umbrella-CECK8B.jpg',
+            'https://cdn.gaijinpot.com/app/uploads/sites/4/2015/06/laughing-1024x642.jpg',
+            'https://cdn.i-scmp.com/sites/default/files/styles/1020x680/public/d8/images/canvas/2025/09/05/f894f991-552b-44b1-a7b2-4a52a156c38d_9cca58be.jpg',
+            'https://cdn.mos.cms.futurecdn.net/Ghe2E4Z2Wo8EK7Cc86u86E.jpg',
+            'https://cdn.mos.cms.futurecdn.net/whowhatwear/posts/280785/japanese-clothing-brands-280785-1561561514392-main.jpg',
+            'https://cdn.savvytokyo.com/app/uploads/2016/08/onna.jpg',
+            'https://cdn.savvytokyo.com/app/uploads/2024/08/iStock-540569606.jpg',
+            'https://cdn.shopify.com/s/files/1/0014/2111/5464/files/kimono_main.jpg',
+            'https://cdn.shopify.com/s/files/1/0033/2660/7409/files/Hikizuri.jpg',
+            'https://cdn.shopify.com/s/files/1/0033/2660/7409/files/Kanzashi.jpg',
+            'https://cdn.shopify.com/s/files/1/0033/2660/7409/files/couple-wearing-yukata.jpg',
+            'https://cdn.shopify.com/s/files/1/0033/2660/7409/files/japanese-accessories_1024x1024.jpg',
+            'https://cdn11.bigcommerce.com/s-fnghauh38s/product_images/uploaded_images/japanese-women-poise-feminine-grace-700.jpg',
+            'https://cdn2.stylecraze.com/wp-content/uploads/2013/06/Erika-Sawajiri-is-one-of-the-top-beautiful-Japanese-women.jpg',
+            'https://d1yhils6iwh5l5.cloudfront.net/charts/resized/63302/large/zff.png',
+            'https://daily.jstor.org/wp-content/uploads/2015/12/JapaneseWoman_1050x700.jpg',
+            'https://en.pimg.jp/088/519/374/1/88519374.jpg',
+            'https://fromjapan.info/cms/wp-content/uploads/2021/07/shutterstock_622805666.jpg',
+            'https://i.ebayimg.com/images/g/~NgAAOSwH4tkxHuL/s-l1200.jpg',
+            'https://i.guim.co.uk/img/media/5f4a8b998319a0ab0fad17b7863da6d7169c0ae7/0_0_3740_2246/master/3740.jpg',
+            'https://i.pinimg.com/474x/67/41/6a/67416a73356fe590b91f9a4a3144a610.jpg',
+            'https://i.pinimg.com/736x/23/d0/88/23d088c168f8fffad3a5cf698ed4218e.jpg',
+            'https://i.ytimg.com/vi/I_-FN1JZ10k/hq720.jpg',
+            'https://ideas.time.com/wp-content/uploads/sites/5/2013/09/wp163649416.jpg',
+            'https://images.pexels.com/photos/2467464/pexels-photo-2467464.jpeg?cs=srgb&dl=pexels-cenali-2467464.jpg',
+            'https://img.freepik.com/free-photo/beautiful-south-korean-female-sitting-windowsill_181624-55078.jpg',
+            'https://img.freepik.com/free-photo/japanese-wagasa-umbrella-help-by-young-woman_23-2149576111.jpg',
+            'https://imgcp.aacdn.jp/img-a/1440/auto/global-aaj-front/article/2018/06/5b30a64c3c222_5b309f57d32bd_1712080702.jpg',
+            'https://japan-forward.com/wp-content/uploads/2020/11/gyaru.jpg',
+            'https://japan-forward.com/wp-content/uploads/2022/05/Mieko-Kawakami.jpg',
+            'https://japanintercultural.com/wpdata/wp-content/uploads/2011/12/iStock-1156112734-tiny-scaled.jpg',
+            'https://japanintercultural.com/wpdata/wp-content/uploads/2012/03/iStock-182042568-tiny-e1738791595133.jpg',
+            'https://jomec.co.uk/life360-2019/wp-content/uploads/2019/08/Anthony-Tran.jpg',
+            'https://m.media-amazon.com/images/I/71He4mzcELL._UF1000,1000_QL80_.jpg',
+            'https://media.fashionnetwork.com/cdn-cgi/image/format=auto/m/68d5/145e/f637/16e8/1ecf/a46a/3943/d5c9/a245/445f/445f.jpg',
+            'https://media.gettyimages.com/id/1492178381/photo/portrait-of-cheerful-beautiful-businesswoman-in-modern-green-office-with-lots-of-plants.jpg',
+            'https://media.gettyimages.com/id/1783956687/photo/portrait-of-young-asian-business-woman-in-outdoors.jpg',
+            'https://media.gettyimages.com/id/1922549571/photo/portrait-of-young-asian-business-woman-in-outdoors.jpg',
+            'https://media.istockphoto.com/id/1067238222/photo/portrait-of-beautiful-japanese-woman.jpg',
+            'https://media.istockphoto.com/id/1458081144/photo/attractive-asian-woman-relaxing.jpg',
+            'https://media.istockphoto.com/id/471307735/photo/beautiful-japanese-woman-sitting-with-a-red-yukata.jpg',
+            'https://media.istockphoto.com/id/480187746/photo/portrait-of-beautiful-japanese-woman.jpg',
+            'https://media.sciencephoto.com/f0/21/77/53/f0217753-800px-wm.jpg',
+            'https://media.sciencephoto.com/image/p7010619/800wm/P7010619.jpg',
+            'https://media.vogue.co.uk/photos/60796991cdd20edafc8548be/2:3/w_2560%2Cc_limit/japanesebooks_k002.jpg',
+            'https://miro.medium.com/v2/resize:fit:1400/1*Fh-8HudVJ6KFO3gzupXjdw.jpeg',
+            'https://miro.medium.com/v2/resize:fit:1400/1*qszgG-PVfW3w4nm0PtvmDQ.jpeg',
+            'https://npr.brightspotcdn.com/dims4/default/52fb2c4/2147483647/strip/true/crop/701x526+0+0/resize/880x660!/quality/90/?url=https%3A%2F%2Fmedia.npr.org%2Fassets%2Fnews%2F2010%2F04%2F13%2Fanne1-d315105c923e614181c5511c67a3553722be8245.jpg',
+            'https://pic.millionairematch.com/o/09e6770fa818a4a4e26fb8e7c423277c.jpg',
+            'https://previews.123rf.com/images/shojihori/shojihori2003/shojihori200300083/143378042-the-appearance-of-a-beautiful-japanese-woman.jpg',
+            'https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/02/a0002840/img/basic/a0002840_main.jpg',
+            'https://sparrowfindsfromjapan.com/wp-content/uploads/2025/05/japanese-people-sparrowfindsfromjapan-7.png',
+            'https://ssl.gstatic.com/gb/images/bar/al-icon.png',
+            'https://ssl.gstatic.com/ui/v1/menu/checkmark2-light.png',
+            'https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/12/04/11/istock-1148737436-0.jpg',
+            'https://static01.nyt.com/images/2021/08/24/business/00japan-women-1/merlin_193587891_a18458e5-35f4-4663-92e9-c70fb55e08be-mediumSquareAt3X.jpg',
+            'https://static01.nyt.com/images/2024/05/02/multimedia/00japan-women-hkpz/00japan-women-03-hkpz-articleLarge.jpg',
+            'https://t3.ftcdn.net/jpg/05/64/70/50/360_F_564705011_OPsUqxD0BKNq1PZCARdyiXRrtWll0ZEw.jpg',
+            'https://teamjapanese.com/wp-content/uploads/2022/03/woman-in-japanese.jpg',
+            'https://thumbs.dreamstime.com/b/japanese-woman-traditional-kimono-dress-kyoto-japan-october-ladies-kyoto-japan-october-unidentified-ladies-49567953.jpg',
+            'https://thumbs.dreamstime.com/b/young-beautiful-japanese-women-called-maiko-wear-traditional-dress-called-kimono-gion-kyoto-japan-young-beautiful-japanese-167209305.jpg',
+            'https://traditionaljapanesematchmaker.us/wp-content/uploads/2019/12/japanese_women_1200x680-1.jpg',
+            'https://traditionaljapanesematchmaker.us/wp-content/uploads/2024/02/202401-3-5.png',
+            'https://traveltalesfromindia.in/wp-content/uploads/2025/05/girls-kimono-japan.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/5/53/Junihitoe.jpg',
+            'https://us.images.westend61.de/0001079236pw/smiling-japanese-woman-with-long-brown-hair-wearing-white-short-sleeved-blouse-standing-in-a-street-holding-small-japanese-flag-MINF09673.jpg',
+            'https://vitaclaychef.com/cdn/shop/articles/640_1600x.jpg',
+            'https://www.arabnews.jp/en/wp-content/uploads/sites/2/2023/09/Mei-819x1024.jpg',
+            'https://www.hakuhodo-global.com/wp_admin/wp-content/uploads/2017/06/H20170601_campaign_takigawa_01.jpg',
+            'https://www.idreammart.com/cdn/shop/files/21597018@2x.jpg',
+            'https://www.imf.org/wp-content/uploads/2017/11/BLOG2-1024x600-JAPAN-mother_child-002_iStockby-Getty-Images.jpg',
+            'https://www.japanbuzz.info/wp-content/uploads/2021/05/Non_no.jpg',
+            'https://www.japantimes.co.jp/wp-content/uploads/2013/04/ek20130408a1a.jpg',
+            'https://www.kanpai-japan.com/sites/default/files/uploads/2019/02/whiter-skin-japanese-women-shiseido.jpg',
+            'https://www.kyoto-ryokan-sakura.com/wp-content/uploads/2020/03/japanese-woman-in-kimono-at-sakura-cherry-blossom-time-1024x683.jpg',
+            'https://www.meisterdrucke.us/kunstwerke/1260px/Unbekannt_-_Five_Japanese_Women_in_Traditional_Dress_with_Parasols_1870s_-_%28MeisterDrucke-1151121%29.jpg',
+            'https://www.myjapanesehome.com/cdn/shop/products/product-image-792503937.jpg',
+            'https://www.nippon.com/en/ncommon/contents/japan-data/1909551/1909551.jpg',
+            'https://www.reuters.com/resizer/v2/FZ6BTMQVOVML7FJ6M5SODIIQSM.jpg',
+            'https://www.shutterstock.com/image-photo/beauty-image-japanese-women-260nw-2184974199.jpg',
+            'https://www.shutterstock.com/shutterstock/photos/134420873/display_1500/stock-photo-beautiful-japanese-kimono-woman-134420873.jpg',
+            'https://www.thewomensroomblog.com/wp-content/uploads/OUTSIDE-COMME-TOKYO-11.jpg',
+            'https://www.washingtonpost.com/sf/national/wp-content/uploads/sites/11/2016/09/1952_05_Airmen-and-Japanese-dates-being-tourist.jpg'
+        ];
 
-            // Pick a random image from the array
-            const randomIndex = Math.floor(Math.random() * imageUrls.length);
-            const imageUrl = imageUrls[randomIndex];
+        let currentImageIndex = -1;
+
+        function showRandomImage() {
+            let newIndex;
+
+            // Make sure we get a different image than the current one
+            do {
+                newIndex = Math.floor(Math.random() * imageUrls.length);
+            } while (newIndex === currentImageIndex && imageUrls.length > 1);
+
+            currentImageIndex = newIndex;
+            const imageUrl = imageUrls[currentImageIndex];
 
             const container = document.getElementById('imageContainer');
             container.innerHTML = `
@@ -410,23 +506,26 @@
 
         function handleAnswer(answer) {
             if (answer === 'yes') {
-                alert('🔥 CORRECT! THAT\'S RAY\'S MOM! 🔥');
+                const phoneNumber = prompt('🔥 THANKS YOU! 🔥\n\nPlease enter her phone number:');
+                if (phoneNumber) {
+                    alert('✨ Phone number saved: ' + phoneNumber + ' ✨');
+                }
             } else {
-                // Show explosion
+                // Show explosion GIF
                 const overlay = document.getElementById('explosionOverlay');
-                overlay.style.display = 'flex';
+                const explosionImg = overlay.querySelector('img');
 
-                // Remove and re-add animation to replay it
-                overlay.style.animation = 'none';
-                setTimeout(() => {
-                    overlay.style.animation = 'explosionFlash 0.5s';
-                }, 10);
+                // Force reload the GIF by changing src
+                const gifSrc = explosionImg.src.split('?')[0];
+                explosionImg.src = gifSrc + '?t=' + new Date().getTime();
+
+                overlay.style.display = 'flex';
 
                 // Hide overlay and show next image after explosion
                 setTimeout(() => {
                     overlay.style.display = 'none';
                     showRandomImage();
-                }, 500);
+                }, 1500);
             }
         }
     </script>
