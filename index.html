@@ -352,6 +352,38 @@
 
         <div class="image-container" id="imageContainer"></div>
 
+        <div class="welcome-text" style="margin: 30px 0;">
+            <h2 style="text-align: center; color: yellow; text-shadow: 2px 2px black;">🎮 PLAY RAY-MAN! 🎮</h2>
+            <canvas id="pacmanCanvas" width="900" height="900" style="display: block; margin: 20px auto; background: #000; border: 5px solid; border-color: red yellow lime cyan; animation: borderSpin 2s infinite;"></canvas>
+            <p style="text-align: center; color: lime; font-size: 18px; margin-top: 10px;">Use Arrow Keys to Move! • Score: <span id="score">0</span></p>
+        </div>
+
+        <div class="welcome-text" style="background: linear-gradient(45deg, #ff8800, #ffaa00); margin-top: 30px;">
+            <h2 style="text-align: center; color: white; text-shadow: 2px 2px black; margin-bottom: 15px;">🏆 Help up decide Ray's middle name! 🏆</h2>
+            <div id="leaderboard" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px;">
+                <div style="display: flex; align-items: center; margin: 10px 0; font-size: 20px; font-weight: bold;">
+                    <span style="color: gold; font-size: 30px; margin-right: 10px;">🥇</span>
+                    <span style="flex: 1; color: yellow;">Gump</span>
+                    <span style="color: lime;">145,639 votes</span>
+                </div>
+                <div style="display: flex; align-items: center; margin: 10px 0; font-size: 20px; font-weight: bold;">
+                    <span style="color: silver; font-size: 30px; margin-right: 10px;">🥈</span>
+                    <span style="flex: 1; color: yellow;">Danger</span>
+                    <span style="color: lime;">133,749 votes</span>
+                </div>
+                <div style="display: flex; align-items: center; margin: 10px 0; font-size: 20px; font-weight: bold;">
+                    <span style="color: #cd7f32; font-size: 30px; margin-right: 10px;">🥉</span>
+                    <span style="flex: 1; color: yellow;">Clash Royal</span>
+                    <span style="color: lime;">69,540 votes</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 10px;">
+                <p style="color: white; font-size: 18px; margin-bottom: 10px;">💡 Got a better idea? Submit your suggestion! 💡</p>
+                <input type="text" id="middleNameInput" placeholder="Enter middle name suggestion..." style="padding: 10px; font-size: 16px; width: 60%; max-width: 300px; border: 3px solid yellow; border-radius: 5px; font-family: 'Comic Sans MS', sans-serif; background: #fff; color: #000;">
+                <button onclick="submitMiddleName()" style="padding: 10px 20px; font-size: 16px; margin-left: 10px; background: linear-gradient(45deg, lime, yellow); border: 3px solid red; border-radius: 5px; font-family: 'Comic Sans MS', sans-serif; font-weight: bold; cursor: pointer; color: #000;">SUBMIT!</button>
+            </div>
+        </div>
+
         <div class="welcome-text">
             <span class="sparkle">✨</span>
             YOU ARE VISITOR NUMBER 999999!!!
@@ -381,7 +413,9 @@
 
         <div class="welcome-text">
             <h2 class="blink">⭐ MY FAVORITE LINKS ⭐</h2>
-            <p>COMING SOON TO A BROWSER NEAR YOU!!!</p>
+            <p><a href="https://www.toyraygun.com" style="color: yellow; text-decoration: underline;">🔫 Toy Ray Gun!</a></p>
+            <p><a href="https://www.heavensgate.com" style="color: yellow; text-decoration: underline;">🌟 Heaven's Gate</a></p>
+            <p><a href="https://www.csoon.com" style="color: yellow; text-decoration: underline;">💫 C Soon!</a></p>
         </div>
 
         <div class="marquee-container">
@@ -399,11 +433,188 @@
         </div>
 
         <div class="fire"></div>
+
+        <div class="welcome-text" style="text-align: left; font-size: 16px; line-height: 1.6;">
+            <h2 style="text-align: center; color: yellow; text-shadow: 2px 2px black;">About Ray's Mom</h2>
+            <p>Ray's mom is one of those people who radiate warmth the moment you meet her — the kind of person who somehow always knows when you're hungry, cold, or just in need of a kind word. She has this calm, elegant presence that makes any room feel instantly more peaceful, like a cup of green tea on a rainy day. Her cooking is incredible — every meal feels like a secret recipe passed down through generations.</p>
+            <p>And yet… there's something ever so mysterious about her. The way she moves quietly but purposefully, how she always seems to know more than she lets on. Her polite smile hides a spark of mischief, and she has an uncanny knack for remembering small details no one else notices. Sometimes, when she answers a question with that knowing little laugh, you can't help but wonder — maybe, just maybe, Ray's mom isn't just a lovely woman… but also a top-secret agent working quietly for Japan, blending kindness and espionage with flawless grace.</p>
+        </div>
+
+        <div class="fire"></div>
+
+        <div class="welcome-text" style="background: linear-gradient(45deg, #00ff00, #00ffff); margin-top: 30px;">
+            <h2 style="text-align: center; color: white; text-shadow: 2px 2px black; margin-bottom: 15px;">🍪 RAY CLICKER! 🍪</h2>
+            <div style="text-align: center; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+                <p style="color: yellow; font-size: 28px; font-weight: bold; margin: 10px 0;">Rays: <span id="rayCount">0</span></p>
+                <p style="color: lime; font-size: 18px; margin: 10px 0;">Rays per second: <span id="raysPerSecond">0</span></p>
+                <img id="rayClicker" src="RayFace.png" onclick="clickRay()" style="width: 200px; height: 200px; cursor: pointer; margin: 20px auto; display: block; border: 5px solid yellow; border-radius: 50%; transition: transform 0.1s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                <p style="color: white; font-size: 16px; margin-bottom: 20px;">Click Ray to collect Rays!</p>
+
+                <div style="text-align: left; max-width: 400px; margin: 0 auto;">
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px; margin: 10px 0; border-radius: 5px; border: 2px solid #ffaa00;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <p style="color: yellow; font-weight: bold; margin: 5px 0;">👆 Auto Clicker</p>
+                                <p style="color: white; font-size: 14px; margin: 5px 0;">+1 Ray/sec</p>
+                                <p style="color: lime; font-size: 14px; margin: 5px 0;">Cost: <span id="autoClickerCost">10</span> Rays</p>
+                            </div>
+                            <button onclick="buyAutoClicker()" style="padding: 10px 20px; background: linear-gradient(45deg, #ffaa00, #ff8800); border: 3px solid red; border-radius: 5px; font-family: 'Comic Sans MS', sans-serif; font-weight: bold; cursor: pointer; color: white;">BUY</button>
+                        </div>
+                        <p style="color: cyan; font-size: 14px; margin: 5px 0;">Owned: <span id="autoClickerCount">0</span></p>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px; margin: 10px 0; border-radius: 5px; border: 2px solid #ffaa00;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <p style="color: yellow; font-weight: bold; margin: 5px 0;">🏭 Ray Factory</p>
+                                <p style="color: white; font-size: 14px; margin: 5px 0;">+5 Rays/sec</p>
+                                <p style="color: lime; font-size: 14px; margin: 5px 0;">Cost: <span id="factoryCost">100</span> Rays</p>
+                            </div>
+                            <button onclick="buyFactory()" style="padding: 10px 20px; background: linear-gradient(45deg, #ffaa00, #ff8800); border: 3px solid red; border-radius: 5px; font-family: 'Comic Sans MS', sans-serif; font-weight: bold; cursor: pointer; color: white;">BUY</button>
+                        </div>
+                        <p style="color: cyan; font-size: 14px; margin: 5px 0;">Owned: <span id="factoryCount">0</span></p>
+                    </div>
+
+                    <div style="background: rgba(0,0,0,0.4); padding: 10px; margin: 10px 0; border-radius: 5px; border: 2px solid #ffaa00;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <p style="color: yellow; font-weight: bold; margin: 5px 0;">🚀 Ray Portal</p>
+                                <p style="color: white; font-size: 14px; margin: 5px 0;">+25 Rays/sec</p>
+                                <p style="color: lime; font-size: 14px; margin: 5px 0;">Cost: <span id="portalCost">1000</span> Rays</p>
+                            </div>
+                            <button onclick="buyPortal()" style="padding: 10px 20px; background: linear-gradient(45deg, #ffaa00, #ff8800); border: 3px solid red; border-radius: 5px; font-family: 'Comic Sans MS', sans-serif; font-weight: bold; cursor: pointer; color: white;">BUY</button>
+                        </div>
+                        <p style="color: cyan; font-size: 14px; margin: 5px 0;">Owned: <span id="portalCount">0</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fire"></div>
     </div>
 
     <div class="fire"></div>
 
+    <audio id="bgMusic" loop autoplay>
+        <source src="screaming-man.mp3" type="audio/mpeg">
+    </audio>
+
     <script>
+        // Auto-play background music (some browsers require user interaction)
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('bgMusic');
+            audio.volume = 2.0; // Set volume to 200%
+            audio.play().catch(e => {
+                // If autoplay is blocked, play on first user interaction
+                document.body.addEventListener('click', () => {
+                    audio.play();
+                }, { once: true });
+            });
+        });
+
+        // Random popup ads
+        const rayAds = [
+            {
+                title: '🎮 RAY STATION 5 - NOW AVAILABLE! 🎮',
+                text: 'Experience gaming like never before with Ray Station 5! Comes with built-in screaming technology. Only $999.99! Click here to NOT buy now!',
+                color: '#0066cc'
+            },
+            {
+                title: '📱 NEW iRay Pro Max Ultra! 📱',
+                text: 'The revolutionary new smartphone with 47 cameras and a built-in Ray clicker game! Pre-order now for just $1,299!',
+                color: '#333333'
+            },
+            {
+                title: '🍔 RAY-DONALDS SUPER COMBO! 🍔',
+                text: 'Two Big Rays, Large Rays, 20-piece Ray Nuggets, and a Ray Shake! Limited time offer: $6.99!',
+                color: '#FFC72C'
+            },
+            {
+                title: '👟 RAY-KE AIR JORDANS! 👟',
+                text: 'Jump higher, run faster with Ray-ke Air Jordans featuring Ray Face technology! Get yours for $249.99!',
+                color: '#FF6B35'
+            },
+            {
+                title: '🚗 2025 TOYOTA RAY-ROLLA! 🚗',
+                text: 'The most reliable car with Ray-inspired design! 0% APR financing available! Test drive today!',
+                color: '#C8102E'
+            },
+            {
+                title: '🥤 RAY BULL ENERGY DRINK! 🥤',
+                text: 'RAY BULL GIVES YOU WINGS! Now with 300% more screaming power! Buy a 24-pack for $39.99!',
+                color: '#005AB4'
+            },
+            {
+                title: '💻 DELL RAYBOOK PRO! 💻',
+                text: 'Work and play with the new Dell RayBook Pro! Features Ray Face wallpaper pre-installed! Starting at $899!',
+                color: '#0076CE'
+            },
+            {
+                title: '🍕 DOMINO\'S RAY PIZZA SPECIAL! 🍕',
+                text: 'Large 3-topping Ray Pizza + Ray Sticks + 2-Liter Ray-Cola for only $19.99! Order now!',
+                color: '#0B648F'
+            }
+        ];
+
+        function showRandomAd() {
+            const ad = rayAds[Math.floor(Math.random() * rayAds.length)];
+
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                position: fixed;
+                top: ${Math.random() * 60 + 10}%;
+                left: ${Math.random() * 60 + 10}%;
+                background: ${ad.color};
+                border: 5px solid yellow;
+                padding: 20px;
+                border-radius: 10px;
+                z-index: 9999;
+                box-shadow: 0 0 20px rgba(0,0,0,0.5);
+                max-width: 400px;
+                font-family: 'Comic Sans MS', sans-serif;
+                color: white;
+                animation: shake 0.5s infinite;
+            `;
+
+            popup.innerHTML = `
+                <div style="text-align: center;">
+                    <h2 style="color: yellow; text-shadow: 2px 2px black; margin: 10px 0; font-size: 20px;">${ad.title}</h2>
+                    <p style="font-size: 16px; margin: 15px 0;">${ad.text}</p>
+                    <button onclick="this.parentElement.parentElement.remove()" style="
+                        background: linear-gradient(45deg, red, orange);
+                        border: 3px solid yellow;
+                        padding: 10px 20px;
+                        font-size: 18px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        border-radius: 5px;
+                        color: white;
+                        font-family: 'Comic Sans MS', sans-serif;
+                        margin-top: 10px;
+                    ">CLOSE [X]</button>
+                </div>
+            `;
+
+            document.body.appendChild(popup);
+
+            // Auto-close after 10 seconds
+            setTimeout(() => {
+                if (popup.parentElement) {
+                    popup.remove();
+                }
+            }, 10000);
+        }
+
+        // Show first ad immediately on page load
+        setTimeout(() => {
+            showRandomAd();
+        }, 1000);
+
+        // Show random ads every 5 seconds
+        setInterval(() => {
+            showRandomAd();
+        }, 5000);
+
         // Array of image URLs from japanese_women.txt
         const imageUrls = [
             'http://cdn.gaijinpot.com/app/uploads/sites/4/2025/05/iStock-mapo-How-to-Ask-Women-Out-in-Japan-date-cafe.jpeg',
@@ -552,6 +763,315 @@
                 }, 1500);
             }
         }
+
+        function submitMiddleName() {
+            const input = document.getElementById('middleNameInput');
+            const name = input.value.trim();
+            if (name) {
+                const leaderboard = document.getElementById('leaderboard');
+                const newEntry = document.createElement('div');
+                newEntry.style.cssText = 'display: flex; align-items: center; margin: 10px 0; font-size: 18px; font-weight: bold;';
+                newEntry.innerHTML = '<span style="color: white; font-size: 24px; margin-right: 10px;">⭐</span>' +
+                                    '<span style="flex: 1; color: yellow;">' + name + '</span>' +
+                                    '<span style="color: lime;">1 vote</span>';
+                leaderboard.appendChild(newEntry);
+                alert('Thanks for suggesting "' + name + '"! Your vote has been counted! 🎉');
+                input.value = '';
+            } else {
+                alert('Please enter a middle name suggestion!');
+            }
+        }
+
+        // Ray Clicker Game
+        let rays = 0;
+        let autoClickers = 0;
+        let factories = 0;
+        let portals = 0;
+        let autoClickerCost = 10;
+        let factoryCost = 100;
+        let portalCost = 1000;
+
+        function clickRay() {
+            rays += 1;
+            updateDisplay();
+            // Add click animation
+            const img = document.getElementById('rayClicker');
+            img.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                img.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        function buyAutoClicker() {
+            if (rays >= autoClickerCost) {
+                rays -= autoClickerCost;
+                autoClickers += 1;
+                autoClickerCost = Math.floor(autoClickerCost * 1.15);
+                updateDisplay();
+            } else {
+                alert('Not enough Rays!');
+            }
+        }
+
+        function buyFactory() {
+            if (rays >= factoryCost) {
+                rays -= factoryCost;
+                factories += 1;
+                factoryCost = Math.floor(factoryCost * 1.15);
+                updateDisplay();
+            } else {
+                alert('Not enough Rays!');
+            }
+        }
+
+        function buyPortal() {
+            if (rays >= portalCost) {
+                rays -= portalCost;
+                portals += 1;
+                portalCost = Math.floor(portalCost * 1.15);
+                updateDisplay();
+            } else {
+                alert('Not enough Rays!');
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('rayCount').textContent = Math.floor(rays);
+            document.getElementById('raysPerSecond').textContent = (autoClickers * 1) + (factories * 5) + (portals * 25);
+            document.getElementById('autoClickerCount').textContent = autoClickers;
+            document.getElementById('factoryCount').textContent = factories;
+            document.getElementById('portalCount').textContent = portals;
+            document.getElementById('autoClickerCost').textContent = autoClickerCost;
+            document.getElementById('factoryCost').textContent = factoryCost;
+            document.getElementById('portalCost').textContent = portalCost;
+        }
+
+        // Auto-generate rays every second
+        setInterval(() => {
+            rays += (autoClickers * 1) + (factories * 5) + (portals * 25);
+            updateDisplay();
+        }, 1000);
+
+        // Pac-Man Game
+        const canvas = document.getElementById('pacmanCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+
+        const TILE_SIZE = 60;
+        const GRID_WIDTH = 15;
+        const GRID_HEIGHT = 15;
+
+        // Load images
+        const rayFaceImg = new Image();
+        rayFaceImg.src = 'RayFace.png';
+        const ghostImg = new Image();
+        ghostImg.src = 'mcat.png';
+
+        // Maze layout (1 = wall, 0 = dot, 2 = empty, 3 = power pellet)
+        const maze = [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,0,1,1,0,1,0,1,0,1,0,1,1,0,1],
+            [1,3,0,0,0,0,0,0,0,0,0,0,0,3,1],
+            [1,0,1,0,1,1,1,1,1,1,1,0,1,0,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,1,1,0,1,1,0,1,0,1,1,0,1,1,1],
+            [1,0,0,0,0,0,0,2,0,0,0,0,0,0,1],
+            [1,1,1,0,1,1,0,1,0,1,1,0,1,1,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,0,1,0,1,1,1,1,1,1,1,0,1,0,1],
+            [1,3,0,0,0,0,0,0,0,0,0,0,0,3,1],
+            [1,0,1,1,0,1,0,1,0,1,0,1,1,0,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,0,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        let player = { x: 1, y: 1, dir: 0 }; // dir: 0=right, 1=down, 2=left, 3=up
+        let ghosts = [
+            { x: 7, y: 7, dir: 0, color: 'red' },
+            { x: 8, y: 7, dir: 2, color: 'pink' },
+            { x: 7, y: 8, dir: 1, color: 'cyan' }
+        ];
+        let score = 0;
+        let dots = 0;
+
+        // Count initial dots
+        for (let y = 0; y < GRID_HEIGHT; y++) {
+            for (let x = 0; x < GRID_WIDTH; x++) {
+                if (maze[y][x] === 0 || maze[y][x] === 3) dots++;
+            }
+        }
+
+        const dirX = [1, 0, -1, 0];
+        const dirY = [0, 1, 0, -1];
+        let nextDir = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextDir = 0;
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                nextDir = 1;
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                nextDir = 2;
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                nextDir = 3;
+            }
+        });
+
+        function canMove(x, y) {
+            if (x < 0 || x >= GRID_WIDTH || y < 0 || y >= GRID_HEIGHT) return false;
+            return maze[y][x] !== 1;
+        }
+
+        function movePlayer() {
+            const newX = player.x + dirX[nextDir];
+            const newY = player.y + dirY[nextDir];
+            if (canMove(newX, newY)) {
+                player.dir = nextDir;
+                player.x = newX;
+                player.y = newY;
+            } else {
+                const newX2 = player.x + dirX[player.dir];
+                const newY2 = player.y + dirY[player.dir];
+                if (canMove(newX2, newY2)) {
+                    player.x = newX2;
+                    player.y = newY2;
+                }
+            }
+
+            // Collect dots
+            if (maze[player.y][player.x] === 0) {
+                maze[player.y][player.x] = 2;
+                score += 10;
+                dots--;
+            } else if (maze[player.y][player.x] === 3) {
+                maze[player.y][player.x] = 2;
+                score += 50;
+                dots--;
+            }
+
+            scoreElement.textContent = score;
+
+            // Check collision after player moves
+            for (let ghost of ghosts) {
+                if (ghost.x === player.x && ghost.y === player.y) {
+                    alert('Game Over! Score: ' + score);
+                    location.reload();
+                }
+            }
+        }
+
+        function moveGhosts() {
+            ghosts.forEach(ghost => {
+                // Simple AI: random direction changes
+                if (Math.random() < 0.1) {
+                    ghost.dir = Math.floor(Math.random() * 4);
+                }
+
+                const newX = ghost.x + dirX[ghost.dir];
+                const newY = ghost.y + dirY[ghost.dir];
+
+                if (canMove(newX, newY)) {
+                    ghost.x = newX;
+                    ghost.y = newY;
+                } else {
+                    ghost.dir = Math.floor(Math.random() * 4);
+                }
+
+                // Check collision with player
+                if (ghost.x === player.x && ghost.y === player.y) {
+                    alert('Game Over! Score: ' + score);
+                    location.reload();
+                }
+            });
+        }
+
+        function draw() {
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw maze
+            for (let y = 0; y < GRID_HEIGHT; y++) {
+                for (let x = 0; x < GRID_WIDTH; x++) {
+                    const tile = maze[y][x];
+                    if (tile === 1) {
+                        ctx.fillStyle = '#00f';
+                        ctx.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                    } else if (tile === 0) {
+                        ctx.fillStyle = '#fff';
+                        ctx.beginPath();
+                        ctx.arc(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2, 5, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else if (tile === 3) {
+                        ctx.fillStyle = '#fff';
+                        ctx.beginPath();
+                        ctx.arc(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2, 10, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+            }
+
+            // Draw player
+            if (rayFaceImg.complete) {
+                ctx.drawImage(rayFaceImg, player.x * TILE_SIZE, player.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+            } else {
+                ctx.fillStyle = 'yellow';
+                ctx.beginPath();
+                ctx.arc(player.x * TILE_SIZE + TILE_SIZE/2, player.y * TILE_SIZE + TILE_SIZE/2, TILE_SIZE/2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Draw ghosts
+            ghosts.forEach(ghost => {
+                if (ghostImg.complete) {
+                    ctx.drawImage(ghostImg, ghost.x * TILE_SIZE, ghost.y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                } else {
+                    ctx.fillStyle = ghost.color;
+                    ctx.beginPath();
+                    ctx.arc(ghost.x * TILE_SIZE + TILE_SIZE/2, ghost.y * TILE_SIZE + TILE_SIZE/2, TILE_SIZE/2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+
+            // Win condition
+            if (dots === 0) {
+                ctx.fillStyle = 'yellow';
+                ctx.font = '40px Comic Sans MS';
+                ctx.textAlign = 'center';
+                ctx.fillText('YOU WIN!', canvas.width/2, canvas.height/2);
+            }
+        }
+
+        let lastTime = 0;
+        function gameLoop(timestamp) {
+            if (timestamp - lastTime > 150) {
+                movePlayer();
+                moveGhosts();
+                draw();
+                lastTime = timestamp;
+            }
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Start game when images load
+        let imagesLoaded = 0;
+        rayFaceImg.onload = () => {
+            imagesLoaded++;
+            if (imagesLoaded === 2) gameLoop(0);
+        };
+        ghostImg.onload = () => {
+            imagesLoaded++;
+            if (imagesLoaded === 2) gameLoop(0);
+        };
+
+        // Start anyway after a delay if images don't load
+        setTimeout(() => {
+            if (imagesLoaded < 2) gameLoop(0);
+        }, 1000);
     </script>
 </body>
 </html>
